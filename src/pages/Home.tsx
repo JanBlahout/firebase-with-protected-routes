@@ -4,7 +4,7 @@ import {
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { auth } from '../firebase';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 const Home = (props) => {
   const { user } = props;
@@ -50,8 +50,8 @@ const Home = (props) => {
         {isSignUpActive && <legend>Sign up</legend>}
         {!isSignUpActive && <legend>Sign in</legend>}
 
-        <fieldset>
-          <ul>
+        <fieldset style={{ minWidth: '350px' }}>
+          <ul style={{ listStyle: 'none' }}>
             <li>
               <label htmlFor="email">Email</label>
               <input
@@ -79,9 +79,12 @@ const Home = (props) => {
             </button>
           )}
         </fieldset>
-        <a onClick={handleMethodChange}>
-          {isSignUpActive ? 'Log In' : 'Create an account'}
-        </a>
+        <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+          <a onClick={handleMethodChange}>
+            {isSignUpActive ? 'Log In' : 'Create an account'}
+          </a>
+          <Link to={'/private'}>Click here to go to /private</Link>
+        </div>
       </form>
     </section>
   );
